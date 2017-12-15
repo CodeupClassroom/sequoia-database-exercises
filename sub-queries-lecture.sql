@@ -31,3 +31,23 @@ SELECT
 FROM users
 WHERE team_id in (SELECT id FROM  teams WHERE name in ('Sequoia', 'Redwood'))
 ORDER BY team_id DESC;
+
+
+## Extra example
+
+
+
+describe titles;
+
+# Get all the employees that are female with their titles.
+
+select e.first_name, e.last_name, e.gender, t.title
+from employees e
+  join titles t on t.emp_no = e.emp_no
+where e.gender = 'F';
+
+# Not caring about the title we can use a subquery to get all the employees that are female and have at least a title
+
+select e.first_name, e.last_name, e.gender
+from employees e
+where e.gender = 'F' and e.emp_no in (select emp_no from titles);
